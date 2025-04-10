@@ -23,7 +23,7 @@
 
 **1. 해당 리포지토리 클론하기**
    ```
-   git clone https://github.com/Likelion-YeungNam-Univ/13th-be-oop-assignment.git
+   git clone https://github.com/Likelion-YeungNam-Univ/13th-be-spring-assignment.git
    ```
 
 **2. 본인 깃허브 이름으로 된 브랜치 생성 - `feature/{깃허브 이름}`**
