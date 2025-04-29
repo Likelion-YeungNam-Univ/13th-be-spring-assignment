@@ -16,6 +16,7 @@ public class MemoService {
 
 
     public Memo add(MemoDto dto){
+        if(dto.checkNull()) return null;
         Memo memo = dto.toEntity();
         return memoRepository.save(memo);
     }
@@ -48,11 +49,12 @@ public class MemoService {
     }
 
     @Transactional
-    public Memo delete(Long id) {
+    public MemoDto delete(Long id) {
         Memo memo = find(id);
+        MemoDto delete = memo.toDto();
         if(memo == null) return null;
         memoRepository.delete(memo);
-        return memo;
+        return delete;
     }
 
 

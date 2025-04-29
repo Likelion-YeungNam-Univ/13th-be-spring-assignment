@@ -54,11 +54,11 @@ public class MemoRestApiController {
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Memo> delete(@PathVariable Long id) {
-        Memo delete = memoService.delete(id);
+    public ResponseEntity<MemoDto> delete(@PathVariable Long id) {
+        MemoDto delete = memoService.delete(id);
         return (delete != null) ? ResponseEntity.status(HttpStatus.OK).body(delete)
                 : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        // 여기를 굳이 DTO로 넘겨줘야 하는것일까
+//         여기를 굳이 DTO로 넘겨줘야 하는것일까
     }
 
 }

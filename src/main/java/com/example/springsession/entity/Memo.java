@@ -24,14 +24,14 @@ public class Memo {
     private String author;
 
     public void put(MemoDto dto){
-        if(this.id != dto.getId()) throw new IllegalArgumentException("잘못된 id 매칭");
+//        if(this.id != dto.getId()) throw new IllegalArgumentException("잘못된 id 매칭");
         this.title = dto.getTitle();
         this.content = dto.getContent();
         this.author = dto.getAuthor();
     }
     // 차이를 위해 메소드 구분
     public void patch(MemoDto dto){
-        if(this.id != dto.getId()) throw new IllegalArgumentException("잘못된 id 매칭");
+//        if(this.id != dto.getId()) throw new IllegalArgumentException("잘못된 id 매칭");
         if(dto.getTitle() != null) this.title = dto.getTitle();
         if(dto.getContent() != null) this.content = dto.getContent();
         if(dto.getAuthor() != null) this.author = dto.getAuthor();

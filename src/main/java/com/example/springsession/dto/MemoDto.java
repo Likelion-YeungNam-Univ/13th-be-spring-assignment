@@ -17,6 +17,6 @@ public class MemoDto {
     }
 
     public boolean checkNull(){
-        return !(id != null && title != null && content != null && author != null);
+        return !(title != null && content != null && author != null);
     }
 }
