@@ -4,7 +4,6 @@ import com.example.springsession.dto.MemoDto;
 import com.example.springsession.entity.Memo;
 import com.example.springsession.repository.MemoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +12,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MemoService {
-    @Autowired
     private final MemoRepository memoRepository;
 
     public Memo add(MemoDto dto){
