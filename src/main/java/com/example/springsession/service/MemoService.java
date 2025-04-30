@@ -3,6 +3,7 @@ package com.example.springsession.service;
 import com.example.springsession.dto.MemoDto;
 import com.example.springsession.entity.Memo;
 import com.example.springsession.repository.MemoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class MemoService {
     @Autowired
-    private MemoRepository memoRepository;
-
+    private final MemoRepository memoRepository;
 
     public Memo add(MemoDto dto){
         if(dto.checkNull()) return null;
@@ -24,7 +25,6 @@ public class MemoService {
     public List<Memo> getAll(){
         return memoRepository.findAll();
     }
-
 
     public Memo find(Long id) {
         return memoRepository.findById(id).orElse(null);
@@ -51,11 +51,9 @@ public class MemoService {
     @Transactional
     public MemoDto delete(Long id) {
         Memo memo = find(id);
-        MemoDto delete = memo.toDto();
         if(memo == null) return null;
+        MemoDto delete = memo.toDto();
         memoRepository.delete(memo);
         return delete;
     }
-
-
 }
