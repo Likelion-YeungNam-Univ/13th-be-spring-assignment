@@ -1,13 +1,11 @@
-package com.example.springsession;
+package com.example.memo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringSessionApplication {
-
+public class MemoApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SpringSessionApplication.class, args);
+        SpringApplication.run(MemoApplication.class, args);
     }
-
 }
