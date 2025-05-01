@@ -1,9 +1,7 @@
 package com.example.springsession.entity;
 
 import com.example.springsession.dto.MemoDto;
-import jakarta.persistence.*;
 import lombok.*;
-
 
 @Getter
 @Setter
@@ -11,16 +9,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Entity
 public class Memo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private String title;
-    @Column
     private String content;
-    @Column
     private String author;
 
     public void put(MemoDto dto){
