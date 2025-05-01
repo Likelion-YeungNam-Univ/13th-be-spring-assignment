@@ -10,13 +10,13 @@ import java.util.List;
 @RequestMapping("/api/students")
 public class StudentController {
 
-    private StudentRepository studentRepository;
+    private StudentRepository studentRepository = new StudentRepository();
 
     public StudentController(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/get")
     public List<Student> getStudents() {
         System.out.println("GET/students/");
         return studentRepository.readAll();
