@@ -20,24 +20,28 @@ public class TodoController {
         this.todoService = todoService;
     }
 
+    //할일 생성
     @PostMapping
     public ResponseEntity<Todo> create(@RequestBody createTodo createtodo) {
         Todo newOne = todoService.create(createtodo);
         return ResponseEntity.ok(newOne);
     }
 
+    //전체 조회
     @GetMapping
     public ResponseEntity<List<Todo>> getAll() {
         return ResponseEntity.ok(todoService.getAll());
     }
 
-    @GetMapping("/{id}") //개별조회
+    //개별조회
+    @GetMapping("/{id}")
     public ResponseEntity<Todo> getById(@PathVariable Long id) {
         Todo todo = todoService.getById(id);
         if (todo == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(todo);
     }
 
+    //patch(일부분만) 수정
     @PatchMapping("/{id}")
     public ResponseEntity<Todo> patch(@PathVariable Long id, @RequestBody patchTodo patchtodo) {
         Todo todo = todoService.patchTodo(id, patchtodo);
@@ -45,6 +49,7 @@ public class TodoController {
         return ResponseEntity.ok(todo);
     }
 
+    //put(덮어쓰기)
     @PutMapping("/{id}")
     public ResponseEntity<Todo> put(@PathVariable Long id, @RequestBody putTodo puttodo) {
         Todo todo = todoService.put(id, puttodo);
@@ -52,6 +57,7 @@ public class TodoController {
         return ResponseEntity.ok(todo);
     }
 
+    //삭제
     @DeleteMapping("/{id}")
     public ResponseEntity<Todo> delete(@PathVariable Long id) {
         Todo todo = todoService.delete(id);
