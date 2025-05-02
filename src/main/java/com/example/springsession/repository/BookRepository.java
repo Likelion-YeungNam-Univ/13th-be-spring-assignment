@@ -3,6 +3,7 @@ package com.example.springsession.repository;
 import com.example.springsession.entity.Book;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BookRepository {
     //GET 관련 검색 메소드
@@ -14,7 +15,7 @@ public interface BookRepository {
 
     //PUT, PATCH 관련 메소드
     Long fullUpdate(Long id, Book book);
-    Long partialUpdate(Long id, Book book);
+    Long partialUpdate(Long id, Map<String, Object> updates);
 
     //DELETE 관련 메소드
     void deleteById(Long id);

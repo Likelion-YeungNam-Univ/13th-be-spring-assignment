@@ -69,22 +69,27 @@ public class InMemoryBookRepository implements BookRepository{
 
     //책 정보 업데이트(PATCH)
     @Override
-    public Long partialUpdate(Long id, Book patchData){
+    public Long partialUpdate(Long id, Map<String, Object> updates) {
         Book preBook = bookDB.get(id);
         if (preBook == null) return null;
 
-        removeFromIndex(booksByTitle, preBook.getTitle(), preBook);
-        removeFromIndex(booksByAuthor, preBook.getAuthor(), preBook);
-        removeFromIndex(booksByCategoryCode, preBook.getCategoryCode(), preBook);
+        if (updates.containsKey("title") && updates.get("title") != null) {
+            removeFromIndex(booksByTitle, preBook.getTitle(), preBook);
+            preBook.setTitle((String) updates.get("title"));
+            booksByTitle.computeIfAbsent(preBook.getTitle(), title -> new ArrayList<>()).add(preBook);
+        }
 
-        if(patchData.getTitle() != null) preBook.setTitle(patchData.getTitle());
-        if(patchData.getAuthor() != null) preBook.setAuthor(patchData.getAuthor());
-        if(patchData.getCategoryCode() != null) preBook.setCategoryCode(patchData.getCategoryCode());
+        if (updates.containsKey("author") && updates.get("author") != null) {
+            removeFromIndex(booksByAuthor, preBook.getAuthor(), preBook);
+            preBook.setAuthor((String) updates.get("author"));
+            booksByAuthor.computeIfAbsent(preBook.getAuthor(), author -> new ArrayList<>()).add(preBook);
+        }
 
-
-        booksByTitle.computeIfAbsent(preBook.getTitle(), title -> new ArrayList<>()).add(preBook);
-        booksByAuthor.computeIfAbsent(preBook.getAuthor(), author -> new ArrayList<>()).add(preBook);
-        booksByCategoryCode.computeIfAbsent(preBook.getCategoryCode(), booksByCategoryCode -> new ArrayList<>()).add(preBook);
+        if (updates.containsKey("categoryCode") && updates.get("categoryCode") != null) {
+            removeFromIndex(booksByCategoryCode, preBook.getCategoryCode(), preBook);
+            preBook.setCategoryCode((String) updates.get("categoryCode"));
+            booksByCategoryCode.computeIfAbsent(preBook.getCategoryCode(), categoryCode -> new ArrayList<>()).add(preBook);
+        }
 
         return id;
     }

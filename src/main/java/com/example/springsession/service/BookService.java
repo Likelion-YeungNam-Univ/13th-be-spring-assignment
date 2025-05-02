@@ -40,14 +40,7 @@ public class BookService {
         Book book = bookRepository.findById(id);
         if(book == null) return null;
 
-        if(updates.containsKey("title") && updates.get("title") != null)
-            book.setTitle((String) updates.get("title"));
-        if(updates.containsKey("author") && updates.get("author") != null)
-            book.setAuthor((String) updates.get("author"));
-        if(updates.containsKey("categoryCode") && updates.get("categoryCode") != null)
-            book.setCategoryCode((String) updates.get("categoryCode"));
-
-        return bookRepository.partialUpdate(id, book);
+        return bookRepository.partialUpdate(id, updates); //수정할 <key,value>쌍을 partialUpdate로 넘김
     }
 
     //책 삭제
